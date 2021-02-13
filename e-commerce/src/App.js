@@ -3,11 +3,10 @@ import Header from "./Header";
 import Photos from "./Components/Photos";
 import Cart from "./Components/Cart";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {  Route, Switch } from "react-router-dom";
 function App() {
   return (
     <div>
-      <Router>
       <Header />
 
         <Switch>
@@ -19,7 +18,6 @@ function App() {
             <Cart path="/cart" />
           </Route>
         </Switch>
-      </Router>
     </div>
   );
 }
