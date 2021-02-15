@@ -4,7 +4,8 @@ const Context = React.createContext();
 
 function ContextProvider({ children }) {
   const [photos, setPhotos] = useState([]);
-  console.log(photos);
+  const [cartItems, setcartItems] = useState([]);
+
   const url =
     "https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json";
 
@@ -17,10 +18,28 @@ function ContextProvider({ children }) {
         return res.json();
       })
       .then((data) => setPhotos(data));
+    console.log("useEffect in ContextProvider has ended");
   }, []);
 
+  const toggleFavorite = (id) => {
+    const updatedArray = photos.map((photo) => {
+      if (photo.id === id) {
+        return { ...photo, isFavorite: !photo.isFavorite };
+      }
+      return photo;
+    });
+    setPhotos(updatedArray);
+  };
+
+  const addToCart = (id) => {
+    const addedItem = photos.find((photo) => photo.id === id);
+    const updatedArray = [...cartItems, addedItem];
+    setcartItems(updatedArray);
+
+  };
+
   return (
-    <Context.Provider value={{ photos, setPhotos }}>
+    <Context.Provider value={{ photos, toggleFavorite, addToCart, cartItems }}>
       {children}
     </Context.Provider>
   );

@@ -4,10 +4,9 @@ import Photo from "../Photo";
 
 function Photos() {
   const { photos } = useContext(Context);
-  console.log(photos, "photos");
 
   const pictures = photos.map((photo) => (
-    <Photo key={photo.id} url={photo.url} isFavorite={photo.isFavorite} />
+    <Photo key={photo.id} url={photo.url} isFavorite={photo.isFavorite} photoId={photo.id} photo={photo}/>
   ));
 
   return (

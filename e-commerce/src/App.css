@@ -7,6 +7,9 @@
   text-align: center;
 }
 
+a {
+  color: black;
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -16,27 +19,32 @@
 }
 
 .header h1 {
-  color: #681a1e;
+  color: #f57c00;
 }
 
-.cart-icon {
+.icon {
   font-size: 1.5rem;
-  color: #681a1e;
+  color: #f57c00;
   transition: transform 0.2s ease;
 }
 
-.cart-icon:hover {
+.cart-container:hover .icon {
   transform: scale(1.2);
-  color: #681a1e98;
+  color: #f57c00;
+}
+.gallery-container:hover .icon {
+  transform: scale(1.2);
+  color: #f57c00;
 }
 
-.cart-container {
+.icon-container {
   display: flex;
   justify-content: space-between;
-  width: 80px;
+  width: 200px;
 }
-.cart-container span {
+.icon-container span {
   font-weight: 500;
+  margin-right: 5px;
 }
 /* image styling starts here */
 .img-grid {
@@ -45,7 +53,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 30px;
-
 }
 .img-container {
   overflow: hidden;
@@ -62,16 +69,87 @@
   top: 0;
   left: 0;
   opacity: 0;
-  transition: opacity 1s ease;
+  transition: opacity 0.4s ease;
   object-fit: cover;
 }
 
 .active.photo {
+  opacity: 0.8;
+}
+.active.photo:hover {
   opacity: 1;
 }
 
+.hover-icon{
+  transition: transform 0.2s ease;
+
+}
+.hover-icon:hover{
+  cursor: pointer;
+  transform: scale(1.2);
+
+}
+
+
+
+.heart-icon {
+  z-index: 1;
+  right: 10px;
+  top: 10px;
+  position: absolute;
+  font-size: 1.5em;
+  color: #91091e;
+}
+.heart-full-icon {
+  z-index: 1;
+  right: 10px;
+  top: 10px;
+  position: absolute;
+  font-size: 1.5em;
+  color: #91091e;
+}
+
+/* add-icon animation */
+/* @keyframes rotating-icon{
+  from{transform: rotate(0deg);}
+  to{transform: rotate(90deg);}
+} */
+
+
+.add-icon {
+  z-index: 1;
+  right: 45px;
+  top: 10px;
+  position: absolute;
+  font-size: 1.5em;
+  color: #c39e5c;
+  
+}
+.cart-add-icon {
+  z-index: 1;
+  left: 10px;
+  top: 10px;
+  position: absolute;
+  font-size: 1.5em;
+  color: black;
+  
+}
+
+
+
+/* .add-icon:hover{
+  animation-name: rotating-icon;
+  animation-duration: 0.5s;
+} */
+
 /* ======================MEDIA QUERIES ====================== */
-@media (max-width: 1400px) {
+@media (max-width: 1000px) {
+  .icon-container {
+    width: 80px;
+  }
+  .icon-container div span {
+    display: none;
+  }
   /* .header {
     padding: 15px 30%;
   } */
