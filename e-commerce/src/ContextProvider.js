@@ -35,11 +35,22 @@ function ContextProvider({ children }) {
     const addedItem = photos.find((photo) => photo.id === id);
     const updatedArray = [...cartItems, addedItem];
     setcartItems(updatedArray);
+  };
 
+  const handleRemoveFromCart = (id) => {
+    const updatedArray = cartItems.filter((photo) => photo.id !== id);
+    setcartItems(updatedArray);
   };
 
   return (
-    <Context.Provider value={{ photos, toggleFavorite, addToCart, cartItems }}>
+    <Context.Provider
+      value={{
+        photos,
+        toggleFavorite,
+        addToCart,
+        cartItems,
+        handleRemoveFromCart,
+      }}>
       {children}
     </Context.Provider>
   );

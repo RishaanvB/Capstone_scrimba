@@ -4,7 +4,6 @@ import Photo from "../Photo";
 function Cart() {
   const { addToCart, cartItems } = useContext(Context);
 
-
   const cartContent = cartItems.map((item) => (
     <Photo
       key={item.id}
@@ -16,8 +15,7 @@ function Cart() {
 
   return (
     <>
-      <h1>Cart Page</h1>;
-      <div className="img-grid">{cartContent}</div>
+      <h1>Cart Page</h1>;<div className="img-grid">{cartContent}</div>
     </>
   );
 }

@@ -6,7 +6,12 @@ import { Context } from "./ContextProvider";
 import PropTypes from "prop-types";
 
 function Photo({ url, isFavorite, photoId, photo }) {
-  const { toggleFavorite, addToCart, cartItems } = useContext(Context);
+  const {
+    toggleFavorite,
+    addToCart,
+    cartItems,
+    handleRemoveFromCart,
+  } = useContext(Context);
   const [isHovered, setIsHovered] = useState(false);
 
   const handleOpacity = (e) => {
@@ -28,31 +33,36 @@ function Photo({ url, isFavorite, photoId, photo }) {
     />
   );
 
-  const showCartIcon = () =>
-    cartItems.some((obj) => obj.id === photoId) ? true : false;
+  const showCartIcon = () => {
+    const isItemAdded = cartItems.some((photo) => photo.id === photoId);
 
+    if (isItemAdded) {
+      return (
+        <RiShoppingCartLine
+          onClick={() => handleRemoveFromCart(photoId)}
+          className="cart-add-icon hover-icon"
+        />
+      );
+    } else if (isHovered) {
+      return (
+        <FiPlus
+          onClick={() => addToCart(photoId)}
+          className="add-icon hover-icon"
+        />
+      );
+    }
+  };
   return (
     <div
       id={photoId}
       className="img-container"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}>
-      {isHovered && (
-        <div>
-          {showIfNotFavorite}
-          {!showCartIcon() && (
-            <FiPlus
-              onClick={(e) => addToCart(photoId)}
-              className="add-icon hover-icon"
-            />
-          )}
-        </div>
-      )}
-      <div>{showIfFavorite}</div>
-      {showCartIcon() && (
-        <RiShoppingCartLine className="cart-add-icon hover-icon" />
-      )}
-
+      {isHovered && <div>{showIfNotFavorite}</div>}
+      <div>
+        {showIfFavorite}
+        {showCartIcon()}
+      </div>
       <img onLoad={handleOpacity} className="photo" src={url} alt="" />
     </div>
   );
