@@ -50,6 +50,7 @@ function ContextProvider({ children }) {
         addToCart,
         cartItems,
         handleRemoveFromCart,
+        setcartItems
       }}>
       {children}
     </Context.Provider>
